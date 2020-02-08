@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:paddingLeft="10dp"
+   android:paddingTop="10dp"
+   android:paddingRight="10dp"
+   android:paddingBottom="10dp"
+   tools:context="com.example.checkemail.MainActivity">
+   <Button
+       android:id="@+id/myCheckbtn"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/etEnter"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="41dp"
+       android:background="@android:color/holo_orange_light"
+       android:text="Check the email" />
+   <TextView
+       android:id="@+id/tvAnswer"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBottom="@id/etEnter"
+       android:layout_alignParentEnd="true"
+       android:hint="Answer"
+       tools:layout_marginRight="10dp" />
+   <EditText
+       android:id="@+id/etEnter"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="10dp"
+       android:layout_marginTop="39dp"
+       android:background="@color/colorPrimary"
+       android:ems="10"
+       android:hint="Enter Your Email"
+       android:inputType="textPersonName" />
+</RelativeLayout>
