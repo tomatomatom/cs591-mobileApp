@@ -18,6 +18,7 @@ public class Main2Activity extends AppCompatActivity {
     EditText answer;
     Button generate;
     Button submit;
+    TextView prgs;
     int count = 0;
     int score = 0;
     int k;
@@ -34,6 +35,7 @@ public class Main2Activity extends AppCompatActivity {
         generate =(Button) findViewById(R.id.btnGenerate);
         submit = (Button) findViewById(R.id.btnSubmit);
         answer = (EditText) findViewById(R.id.etAnswer);
+        prgs = (TextView) findViewById(R.id.tvProgress);
 
         generate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -46,6 +48,7 @@ public class Main2Activity extends AppCompatActivity {
 
                 num1.setText(Integer.toString(rand1));
                 num2.setText(Integer.toString(rand2));
+                prgs.setText("0/10");
             }
 
         });
@@ -69,6 +72,7 @@ public class Main2Activity extends AppCompatActivity {
                             num2.setText(Integer.toString(rand2));
 
                             count ++;
+                            prgs.setText(count + "/10");
                         } else {
                             String isCorrect = answer.getText().toString();
                             String divisor = Integer.toString(k);
@@ -77,7 +81,7 @@ public class Main2Activity extends AppCompatActivity {
                                 score++;
 
                             }
-
+                            prgs.setText("10/10");
                             Toast.makeText(getApplicationContext(), "Your Score is: " + score, Toast.LENGTH_SHORT).show();
                         }
 
@@ -89,3 +93,4 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 }
+
