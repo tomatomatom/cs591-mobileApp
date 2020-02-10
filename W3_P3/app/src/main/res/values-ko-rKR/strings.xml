@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="cold">춥다!</string>
+    <string name="not_cold">안춥다!</string>
+</resources>
