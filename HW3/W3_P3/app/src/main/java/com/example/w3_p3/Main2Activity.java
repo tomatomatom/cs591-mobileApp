@@ -25,6 +25,7 @@ public class Main2Activity extends AppCompatActivity {
     int score = 0;
     int k;
     Toast toast;
+    boolean displayed = false;
 
 
     @Override
@@ -33,7 +34,10 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         userName = getIntent().getStringExtra("username");
-        displayToast(userName);
+        if (!displayed) {
+            displayToast(userName);
+            displayed = true;
+        }
 
         num1 = (TextView) findViewById(R.id.tvNum1);
         num2 = (TextView) findViewById(R.id.tvNum2);
@@ -108,6 +112,7 @@ public class Main2Activity extends AppCompatActivity {
         outState.putString("prgs", prgs.getText().toString());
         outState.putInt("count", count);
         outState.putInt("score", score);
+        outState.putBoolean("dis", displayed);
 
         super.onSaveInstanceState(outState);
     }
@@ -121,6 +126,7 @@ public class Main2Activity extends AppCompatActivity {
         prgs.setText(savedInstanceState.getString("prgs"));
         count = savedInstanceState.getInt("count");
         score = savedInstanceState.getInt("score");
+        displayed = savedInstanceState.getBoolean("dis");
     }
 
 }
