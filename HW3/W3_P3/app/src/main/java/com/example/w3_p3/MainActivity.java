@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private TextView info;
-    private String password_string = "";
+    private String password_string = "1234";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

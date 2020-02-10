@@ -2,9 +2,7 @@ package com.example.w3_p3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,9 +24,7 @@ public class Main2Activity extends AppCompatActivity {
     int count = 0;
     int score = 0;
     int k;
-    SharedPreferences mSharedPreferences;
-    SharedPreferences.Editor mEditor;
-    boolean isPreviouslyDisplayed = false;
+    Toast toast;
 
 
     @Override
@@ -36,18 +32,8 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
-        isPreviouslyDisplayed = mSharedPreferences.getBoolean("isPreviouslyDisplayed", false);
-
         userName = getIntent().getStringExtra("username");
-        if (!isPreviouslyDisplayed) {
-            Toast.makeText(getApplicationContext(), String.format(welcomeMsg, userName), Toast.LENGTH_SHORT).show();
-            isPreviouslyDisplayed = true;
-        }
-
-        userName = getIntent().getStringExtra("username");
-        Toast.makeText(getApplicationContext(), String.format(welcomeMsg, userName), Toast.LENGTH_SHORT).show();
+        displayToast(userName);
 
         num1 = (TextView) findViewById(R.id.tvNum1);
         num2 = (TextView) findViewById(R.id.tvNum2);
@@ -105,10 +91,13 @@ public class Main2Activity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mEditor.putBoolean("isPreviouslyDisplayed", isPreviouslyDisplayed).apply();
+    public void displayToast(String userName) {
+        if(toast != null)
+            toast.cancel();
+        else {
+            toast = Toast.makeText(getApplicationContext(), String.format(welcomeMsg, userName), Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     @Override
