@@ -28,7 +28,7 @@ public class Main2Activity extends AppCompatActivity {
     int k;
     SharedPreferences mSharedPreferences;
     SharedPreferences.Editor mEditor;
-    boolean isPreviouslyDisplayed;
+    boolean isPreviouslyDisplayed = false;
 
 
     @Override
@@ -45,6 +45,9 @@ public class Main2Activity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), String.format(welcomeMsg, userName), Toast.LENGTH_SHORT).show();
             isPreviouslyDisplayed = true;
         }
+
+        userName = getIntent().getStringExtra("username");
+        Toast.makeText(getApplicationContext(), String.format(welcomeMsg, userName), Toast.LENGTH_SHORT).show();
 
         num1 = (TextView) findViewById(R.id.tvNum1);
         num2 = (TextView) findViewById(R.id.tvNum2);
@@ -77,7 +80,6 @@ public class Main2Activity extends AppCompatActivity {
 
                     if (isCorrect.equals(divisor)) {
                         score++;
-
                     }
                     Random rand = new Random();
                     int rand2 = rand.nextInt(30) + 1;
@@ -89,13 +91,12 @@ public class Main2Activity extends AppCompatActivity {
 
                     count ++;
                     prgs.setText(count + "/10");
-                } else {
+                } else if (count == 9){
                     String isCorrect = answer.getText().toString();
                     String divisor = Integer.toString(k);
 
                     if (isCorrect.equals(divisor)) {
                         score++;
-
                     }
                     prgs.setText("10/10");
                     Toast.makeText(getApplicationContext(), "Your Score is: " + score, Toast.LENGTH_SHORT).show();
@@ -116,6 +117,8 @@ public class Main2Activity extends AppCompatActivity {
         outState.putString("num2", num2.getText().toString());
         outState.putString("answer", answer.getText().toString());
         outState.putString("prgs", prgs.getText().toString());
+        outState.putInt("count", count);
+        outState.putInt("score", score);
 
         super.onSaveInstanceState(outState);
     }
@@ -127,6 +130,8 @@ public class Main2Activity extends AppCompatActivity {
         num2.setText(savedInstanceState.getString("num2"));
         answer.setText(savedInstanceState.getString("answer"));
         prgs.setText(savedInstanceState.getString("prgs"));
+        count = savedInstanceState.getInt("count");
+        score = savedInstanceState.getInt("score");
     }
 
 }
