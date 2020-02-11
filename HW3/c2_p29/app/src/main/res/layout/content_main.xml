@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/lblChicken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="10dp"
+        android:text="Chicken: "
+        android:textColor="#997405"
+        android:padding="6dp"/>
+
+    <EditText
+        android:id="@+id/inputChicken"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/lblChicken"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toRightOf="@id/lblSbeans"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#997405"
+        android:textSize="10dp" />
+
+
+    <TextView
+        android:id="@+id/lblBeef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="45dp"
+        android:padding="6dp"
+        android:text="Beef: "
+        android:textColor="#990505" />
+
+    <EditText
+        android:id="@+id/inputBeef"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblBeef"
+        android:layout_alignLeft="@id/inputChicken"
+        android:layout_below="@id/inputChicken"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#990505"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblEgg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="80dp"
+        android:text="Egg: "
+        android:padding="6dp"
+        android:textColor="#d2d49d"/>
+
+    <EditText
+        android:id="@+id/inputEgg"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblEgg"
+        android:layout_alignLeft="@id/inputBeef"
+        android:layout_below="@id/inputBeef"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textSize="10dp"
+        android:textColor="#d2d49d"/>
+
+    <TextView
+        android:id="@+id/lblSbeans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="115dp"
+        android:text="String Beans: "
+        android:padding="6dp"
+        android:textColor="#5c9172"/>
+
+    <EditText
+        android:id="@+id/inputSbeans"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblSbeans"
+        android:layout_alignLeft="@id/inputEgg"
+        android:layout_below="@id/inputEgg"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#5c9172"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblBroccoli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="150dp"
+        android:text="Broccoli: "
+        android:padding="6dp"
+        android:textColor="#395c35"/>
+
+    <EditText
+        android:id="@+id/inputBroccoli"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblBroccoli"
+        android:layout_alignLeft="@id/inputSbeans"
+        android:layout_below="@id/inputSbeans"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#395c35"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblTofu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="185dp"
+        android:text="Tofu: "
+        android:padding="6dp"
+        android:textColor="#a3a6a2"/>
+
+    <EditText
+        android:id="@+id/inputTofu"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblTofu"
+        android:layout_alignLeft="@id/inputSbeans"
+        android:layout_below="@id/inputBroccoli"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#a3a6a2"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblRice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="220dp"
+        android:text="White Rice: "
+        android:textColor="#343633"
+        android:padding="6dp"/>
+
+    <EditText
+        android:id="@+id/inputRice"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblRice"
+        android:layout_alignLeft="@id/inputSbeans"
+        android:layout_below="@id/inputTofu"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#343633"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblPotato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="255dp"
+        android:text="Potato: "
+        android:padding="6dp"
+        android:textColor="#59401a"/>
+
+    <EditText
+        android:id="@+id/inputPotato"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblPotato"
+        android:layout_alignLeft="@id/inputSbeans"
+        android:layout_below="@id/inputRice"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#59401a"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblBanana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="290dp"
+        android:text="Banana: "
+        android:padding="6dp"
+        android:textColor="#e0d71b"/>
+
+    <EditText
+        android:id="@+id/inputBanana"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblBanana"
+        android:layout_alignLeft="@id/inputSbeans"
+        android:layout_below="@id/inputPotato"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#e0d71b"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblOrange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="325dp"
+        android:text="Orange: "
+        android:padding="6dp"
+        android:textColor="#e08e1b"/>
+
+    <EditText
+        android:id="@+id/inputOrange"
+        android:layout_width="127dp"
+        android:layout_height="5dp"
+        android:layout_alignBottom="@id/lblOrange"
+        android:layout_alignLeft="@id/inputSbeans"
+        android:layout_below="@id/inputBanana"
+        android:hint="Serving Amount"
+        android:textAlignment="center"
+        android:textColor="#e08e1b"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/lblTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="371dp"
+        android:padding="6dp"
+        android:text="Total: "
+        android:textAllCaps="true"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/TotalInt"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/lblTotal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="372dp"
+        android:layout_marginBottom="1dp"
+        android:layout_toRightOf="@id/lblTotal"
+        android:padding="6dp"
+        android:text="0"
+        android:textColor="#000000" />
+
+</RelativeLayout>
