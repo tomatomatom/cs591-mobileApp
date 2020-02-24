@@ -12,13 +12,11 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_change;
     private View traffic_light;
 
-    ColorDrawable red = new ColorDrawable(getResources().getColor(R.color.RED));
-    ColorDrawable grn = new ColorDrawable(getResources().getColor(R.color.GREEN));
-    
+
     //ColorDrawable ylw = new ColorDrawable(getResources().getColor(R.color.YELLOW));
 
-    int redId = red.getColor();
-    int grnId = grn.getColor();
+    int redId = getResources().getColor(R.color.RED);
+    int grnId = getResources().getColor(R.color.GREEN);
     //int ylwId = ylw.getColor();
 
     @Override
@@ -34,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                ColorDrawable viewColor = (ColorDrawable) btn_change.getBackground();
-                int colorId = viewColor.getColor();
+                ColorDrawable viewColor = (ColorDrawable) traffic_light.getBackground();
+                int colorId = ((ColorDrawable)traffic_light.getBackground()).getColor();
 
                 if (colorId == grnId){
                     traffic_light.setBackgroundColor(getResources().getColor(R.color.YELLOW));
