@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">W5_P3</string>
+
+    <string name="instructions">Enter a word, then hit submit</string>
+    <string name="curr_selected"></string>
+    <string name="score">Score: 0</string>
+</resources>
