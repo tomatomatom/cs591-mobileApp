@@ -2,9 +2,13 @@ package com.example.w3_p3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< HEAD
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+=======
+import android.os.Bundle;
+>>>>>>> 61e8daa2cd16bfaf753c521bbf81633f4a06085d
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,9 +30,9 @@ public class Main2Activity extends AppCompatActivity {
     int count = 0;
     int score = 0;
     int k;
-    SharedPreferences mSharedPreferences;
-    SharedPreferences.Editor mEditor;
-    boolean isPreviouslyDisplayed;
+
+    Toast toast;
+    boolean displayed = false;
 
 
     @Override
@@ -36,14 +40,10 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
-        isPreviouslyDisplayed = mSharedPreferences.getBoolean("isPreviouslyDisplayed", false);
-
         userName = getIntent().getStringExtra("username");
-        if (!isPreviouslyDisplayed) {
-            Toast.makeText(getApplicationContext(), String.format(welcomeMsg, userName), Toast.LENGTH_SHORT).show();
-            isPreviouslyDisplayed = true;
+        if (!displayed) {
+            displayToast(userName);
+            displayed = true;
         }
 
         num1 = (TextView) findViewById(R.id.tvNum1);
@@ -89,7 +89,8 @@ public class Main2Activity extends AppCompatActivity {
 
                     count ++;
                     prgs.setText(count + "/10");
-                } else {
+
+                } else if (count == 9){
                     String isCorrect = answer.getText().toString();
                     String divisor = Integer.toString(k);
 
@@ -104,10 +105,14 @@ public class Main2Activity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mEditor.putBoolean("isPreviouslyDisplayed", isPreviouslyDisplayed).apply();
+
+    public void displayToast(String userName) {
+        if(toast != null)
+            toast.cancel();
+        else {
+            toast = Toast.makeText(getApplicationContext(), String.format(welcomeMsg, userName), Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     @Override
@@ -116,6 +121,10 @@ public class Main2Activity extends AppCompatActivity {
         outState.putString("num2", num2.getText().toString());
         outState.putString("answer", answer.getText().toString());
         outState.putString("prgs", prgs.getText().toString());
+
+        outState.putInt("count", count);
+        outState.putInt("score", score);
+        outState.putBoolean("dis", displayed);
 
         super.onSaveInstanceState(outState);
     }
@@ -127,6 +136,10 @@ public class Main2Activity extends AppCompatActivity {
         num2.setText(savedInstanceState.getString("num2"));
         answer.setText(savedInstanceState.getString("answer"));
         prgs.setText(savedInstanceState.getString("prgs"));
+
+        count = savedInstanceState.getInt("count");
+        score = savedInstanceState.getInt("score");
+        displayed = savedInstanceState.getBoolean("dis");
     }
 
 }

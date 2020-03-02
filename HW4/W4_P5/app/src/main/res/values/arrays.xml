@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="words">
+        <item>APPLE</item>
+        <item>CHAIR</item>
+        <item>PHYSICS</item>
+        <item>VENUS</item>
+        <item>HOTPOT</item>
+        <item>PYTHON</item>
+        <item>LAYOUT</item>
+    </string-array>
+
+    <string-array name="hints">
+        <item>Fruit</item>
+        <item>Furniture</item>
+        <item>Major</item>
+        <item>Planet</item>
+        <item>Food</item>
+        <item>Language</item>
+        <item>Android</item>
+    </string-array>
+
+</resources>
