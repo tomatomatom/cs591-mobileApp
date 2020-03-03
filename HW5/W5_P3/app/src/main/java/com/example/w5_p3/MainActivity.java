@@ -23,6 +23,5 @@ public class MainActivity extends AppCompatActivity  implements TopFragment.TopF
     public void sendWordToBottom(String word) {
         BottomFragment receivingFragment = (BottomFragment)getFragmentManager().findFragmentById(R.id.bottomFragment);
         receivingFragment.setScore(word);
-
     }
 }

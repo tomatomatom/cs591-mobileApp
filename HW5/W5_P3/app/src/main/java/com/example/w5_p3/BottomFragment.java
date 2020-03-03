@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -59,13 +65,6 @@ public class BottomFragment extends Fragment {
         txt_score=(TextView) view.findViewById(R.id.txt_score);
         btn_new_game=(Button) view.findViewById(R.id.btn_new_game);
 
-        //put dictionary words into a set
-        Scanner scan = new Scanner("words.txt");
-        while(scan.hasNextLine()){
-            dict.add(scan.nextLine());
-        }
-        scan.close();
-
         //when new game is clicked, we need to send an alert to the top fragment using the interface
         btn_new_game.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,9 +75,6 @@ public class BottomFragment extends Fragment {
 
             }
         });
-
-
-
 
         return view;
     }
@@ -91,8 +87,8 @@ public class BottomFragment extends Fragment {
 
             int numVowels =countVowels(word);
 
-            if (numVowels>1 && dict.contains(word)){
-
+            if (numVowels>1 && check_word(word)){
+                Log.i("correct",word);
                 int numConsonants= word.length()-numVowels;
                 newScore+=numConsonants;
                 newScore+=numVowels*5;
@@ -107,8 +103,6 @@ public class BottomFragment extends Fragment {
                 txt_score.setText("Score: "+currScore);
 
                 return;
-
-
             }
         }
 
@@ -116,8 +110,6 @@ public class BottomFragment extends Fragment {
 
         currScore-=10;
         txt_score.setText("Score: "+currScore);
-
-
 
     }
 
@@ -130,6 +122,24 @@ public class BottomFragment extends Fragment {
             }
         }
         return numVowels;
+    }
+
+    public static boolean check_word(String word) {
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("words.txt"));
+            String str;
+            while ((str = in.readLine()) != null) {
+                if ( str.contains( word )) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            in.close();
+            Log.i("sfv",str);
+        } catch (IOException e) {
+        }
+        return false;
     }
 
 }

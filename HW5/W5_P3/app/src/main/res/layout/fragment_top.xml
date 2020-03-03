@@ -1,48 +1,255 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/frameLayout"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".TopFragment">-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txt_instructions"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="52dp"-->
+<!--        android:text="@string/instructions"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txt_word"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="462dp"-->
+<!--        android:layout_marginEnd="232dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_clear"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginStart="112dp"-->
+<!--        android:layout_marginTop="116dp"-->
+<!--        android:text="Clear"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txt_instructions" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_submit"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="116dp"-->
+<!--        android:layout_marginEnd="84dp"-->
+<!--        android:text="Submit"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txt_instructions" />-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".TopFragment">
+
 
     <TextView
         android:id="@+id/txt_instructions"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="88dp"
         android:text="@string/instructions"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/txt_word"
-        android:layout_width="wrap_content"
+        android:layout_below="@id/txt_instructions"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="462dp"
-        android:layout_marginEnd="232dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text=""
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/btn_clear"
+        android:layout_below="@id/txt_word"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="116dp"
-        android:text="Clear"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_instructions" />
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Clear"/>
 
     <Button
         android:id="@+id/btn_submit"
+        android:layout_below="@id/txt_word"
+        android:layout_toRightOf="@id/btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="84dp"
-        android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_instructions" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginBottom="20dp"
+        android:text="Submit"/>
+
+    <Button
+        android:id="@+id/btnLetter1"
+        android:layout_below="@id/btn_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter2"
+        android:layout_below="@id/btn_clear"
+        android:layout_toRightOf="@id/btnLetter1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter3"
+        android:layout_below="@id/btn_clear"
+        android:layout_toRightOf="@id/btnLetter2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter4"
+        android:layout_below="@id/btn_clear"
+        android:layout_toRightOf="@id/btnLetter3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter5"
+        android:layout_below="@id/btnLetter1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter6"
+        android:layout_below="@id/btnLetter1"
+        android:layout_toRightOf="@id/btnLetter5"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter7"
+        android:layout_below="@id/btnLetter1"
+        android:layout_toRightOf="@id/btnLetter6"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter8"
+        android:layout_below="@id/btnLetter1"
+        android:layout_toRightOf="@id/btnLetter7"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter9"
+        android:layout_below="@id/btnLetter5"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter10"
+        android:layout_below="@id/btnLetter5"
+        android:layout_toRightOf="@id/btnLetter9"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter11"
+        android:layout_below="@id/btnLetter5"
+        android:layout_toRightOf="@id/btnLetter10"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter12"
+        android:layout_below="@id/btnLetter5"
+        android:layout_toRightOf="@id/btnLetter11"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter13"
+        android:layout_below="@id/btnLetter9"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter14"
+        android:layout_below="@id/btnLetter9"
+        android:layout_toRightOf="@id/btnLetter13"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter15"
+        android:layout_below="@id/btnLetter9"
+        android:layout_toRightOf="@id/btnLetter14"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnLetter16"
+        android:layout_below="@id/btnLetter9"
+        android:layout_toRightOf="@id/btnLetter15"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btnLetter_height"
+        android:text="1"
+        android:textSize="20sp"/>
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtFunnyMessage2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="23dp"-->
+<!--            android:hint="&lt;Your other message here.>"-->
+<!--            android:textAppearance="?android:attr/textAppearanceLarge"-->
+<!--            android:textColor="#fff000" />-->
+<!--    -->
+<!--        <TextView-->
+<!--            android:id="@+id/txtFunnyMessage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:autoText="true"-->
+<!--            android:hint="&lt;your other message here.>"-->
+<!--            android:text="txtFunnyMessage"-->
+<!--            android:textAppearance="?android:attr/textAppearanceLarge"-->
+<!--            android:textColor="#ffffff" />-->
+    </RelativeLayout>
