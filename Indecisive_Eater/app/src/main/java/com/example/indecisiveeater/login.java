@@ -1,8 +1,9 @@
-package com.example.login;
+package com.example.indecisiveeater;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class login extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
 
     private TextView tv_head;
     private EditText input_email;
@@ -36,7 +36,7 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_main);
+        setContentView(R.layout.login);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -49,11 +49,13 @@ public class login extends AppCompatActivity {
         bttn_login = findViewById(R.id.bttn_login);
         bttn_signup = findViewById(R.id.bttn_signup);
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("server/saving-data/indecisive_eater");
-
-        myRef.setValue("test123");
+        bttn_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_signUp = new Intent(login.this, signUp.class);
+                startActivity(intent_signUp);
+            }
+        });
 
         bttn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,17 +63,14 @@ public class login extends AppCompatActivity {
                 String email = input_email.getText().toString();
                 String password = input_password.getText().toString();
 
-                signIn(email, password);
-            }
-        });
-
-        bttn_signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = input_email.getText().toString();
-                String password = input_password.getText().toString();
-
-                signUp(email, password);
+                if(email.isEmpty() || password.isEmpty()){
+                    Toast.makeText(getBaseContext(), "Please enter an email & password",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    signIn(email, password);
+                    Intent intent_menu = new Intent(login.this, menu.class);
+                    startActivity(intent_menu);
+                }
             }
         });
     }
@@ -82,23 +81,10 @@ public class login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
+                    Toast.makeText(getBaseContext(), "You're all signed in!", Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(getBaseContext(), "Email/Password is incorrect", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
-
-    public void signUp(String email, String password){
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    FirebaseUser user = mAuth.getCurrentUser();
-                }
-                else{
-                    Toast.makeText(getBaseContext(), "Email/Password is invalid. Try entering a new one.", Toast.LENGTH_LONG).show();
                 }
             }
         });
