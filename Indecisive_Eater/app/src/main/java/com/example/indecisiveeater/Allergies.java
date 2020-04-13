@@ -1,5 +1,6 @@
 package com.example.indecisiveeater;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,6 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Allergies extends AppCompatActivity {
 
@@ -14,7 +23,7 @@ public class Allergies extends AppCompatActivity {
     private CheckBox cb_treenut;
     private CheckBox cb_soy;
     private CheckBox cb_wheat;
-    private CheckBox cb_milk;
+    private CheckBox cb_lactose;
     private CheckBox cb_egg;
     private CheckBox cb_fish;
     private CheckBox cb_shellfish;
@@ -35,7 +44,7 @@ public class Allergies extends AppCompatActivity {
         cb_treenut = findViewById(R.id.cb_treenut);
         cb_soy = findViewById(R.id.cb_soy);
         cb_wheat = findViewById(R.id.cb_wheat);
-        cb_milk = findViewById(R.id.cb_milk);
+        cb_lactose = findViewById(R.id.cb_lactose);
         cb_egg = findViewById(R.id.cb_egg);
         cb_fish = findViewById(R.id.cb_fish);
         cb_shellfish = findViewById(R.id.cb_shellfish);
@@ -58,48 +67,128 @@ public class Allergies extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //when submit is clicked, check which checkboxes are selected and update the database accordingly
+                boolean peanut = cb_peanut.isChecked();
+                updateDatabase("peanut_allergy", peanut);
 
-                if (cb_peanut.isChecked()){
-                    //TODO:update database
+                boolean treenut = cb_treenut.isChecked();
+                updateDatabase("treenut_allergy", treenut);
+
+                boolean soy = cb_soy.isChecked();
+                updateDatabase("soy_allergy", soy);
+
+                boolean wheat = cb_wheat.isChecked();
+                updateDatabase("wheat_allergy", wheat);
+
+                boolean fish = cb_fish.isChecked();
+                updateDatabase("fish_allergy", fish);
+
+                boolean shellfish = cb_shellfish.isChecked();
+                updateDatabase("shellfish_allergy", shellfish);
+
+                boolean lactose = cb_lactose.isChecked();
+                updateDatabase("lactose_allergy", lactose);
+
+                boolean eggs = cb_egg.isChecked();
+                updateDatabase("egg_allergy", eggs);
+
+                Toast.makeText(getBaseContext(),"Your settings have been updated.",Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    private void updateDatabase(String item, boolean value){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference root = database.getReference();
+
+        root.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(item).setValue(value);
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference root = database.getReference();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        //gets the dataSnapShot
+        root.child("users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //peanut: reads database & sets value
+                    boolean peanut = dataSnapshot.child("peanut_allergy").getValue(boolean.class);
+                    if(peanut == true){
+                        cb_peanut.setChecked(true);
+                    }
+                    else{
+                        cb_peanut.setChecked(false);
+                    }
+                //treenut: reads database & sets value
+                    boolean treenut = dataSnapshot.child("treenut_allergy").getValue(boolean.class);
+                    if(treenut == true){
+                        cb_treenut.setChecked(true);
+                    }
+                    else{
+                        cb_treenut.setChecked(false);
+                    }
+                //lactose: reads database & sets value
+                    boolean lactose = dataSnapshot.child("lactose_allergy").getValue(boolean.class);
+                    if(lactose == true){
+                        cb_lactose.setChecked(true);
+                    }
+                    else{
+                        cb_lactose.setChecked(false);
+                    }
+                //eggs: reads database & sets value
+                    boolean egg = dataSnapshot.child("egg_allergy").getValue(boolean.class);
+                    if(egg == true){
+                        cb_egg.setChecked(true);
+                    }
+                    else{
+                        cb_egg.setChecked(false);
                 }
+                //fish: reads database & sets value
+                    boolean fish = dataSnapshot.child("fish_allergy").getValue(boolean.class);
+                    if(fish == true){
+                        cb_fish.setChecked(true);
+                    }
+                    else{
+                        cb_fish.setChecked(false);
+                    }
+                //shellfish: reads database & sets value
+                    boolean shellfish = dataSnapshot.child("shellfish_allergy").getValue(boolean.class);
+                    if(shellfish == true){
+                        cb_shellfish.setChecked(true);
+                    }
+                    else{
+                        cb_shellfish.setChecked(false);
+                    }
+                //wheat: reads database & sets value
+                    boolean wheat = dataSnapshot.child("wheat_allergy").getValue(boolean.class);
+                    if(wheat == true){
+                        cb_wheat.setChecked(true);
+                    }
+                    else{
+                        cb_wheat.setChecked(false);
+                    }
+                //soy: reads database & sets value
+                    boolean soy = dataSnapshot.child("soy_allergy").getValue(boolean.class);
+                    if(soy == true){
+                        cb_soy.setChecked(true);
+                    }
+                    else{
+                        cb_soy.setChecked(false);
+                    }
+            }
 
-                if (cb_treenut.isChecked()){
-                    //TODO:update database
-                }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                if (cb_soy.isChecked()){
-                    //TODO:update database
-                }
-
-                if (cb_wheat.isChecked()){
-                    //TODO:update database
-                }
-
-                if (cb_milk.isChecked()){
-                    //TODO:update database
-                }
-
-                if (cb_egg.isChecked()){
-                    //TODO:update database
-                }
-
-                if (cb_fish.isChecked()){
-                    //TODO:update database
-                }
-
-                if (cb_shellfish.isChecked()){
-                    //TODO:update database
-                }
-
-
-
-                //then, go on to the next activity, dietary restrictions
-                Intent i = new Intent(getApplicationContext(), DR.class);
-                startActivity(i);
             }
         });
     }
-
 
     //save and restore instance state so you don't lose checked boxes when you rotate your phone, etc.
 
@@ -109,7 +198,7 @@ public class Allergies extends AppCompatActivity {
         outState.putBoolean("treenut", cb_treenut.isChecked());
         outState.putBoolean("soy", cb_soy.isChecked());
         outState.putBoolean("wheat", cb_wheat.isChecked());
-        outState.putBoolean("milk", cb_milk.isChecked());
+        outState.putBoolean("milk", cb_lactose.isChecked());
         outState.putBoolean("egg", cb_egg.isChecked());
         outState.putBoolean("fish", cb_fish.isChecked());
         outState.putBoolean("shellfish", cb_shellfish.isChecked());
@@ -126,7 +215,7 @@ public class Allergies extends AppCompatActivity {
         cb_treenut.setChecked(savedInstanceState.getBoolean("treenut"));
         cb_soy.setChecked(savedInstanceState.getBoolean("soy"));
         cb_wheat.setChecked(savedInstanceState.getBoolean("wheat"));
-        cb_milk.setChecked(savedInstanceState.getBoolean("milk"));
+        cb_lactose.setChecked(savedInstanceState.getBoolean("milk"));
         cb_egg.setChecked(savedInstanceState.getBoolean("egg"));
         cb_fish.setChecked(savedInstanceState.getBoolean("fish"));
         cb_shellfish.setChecked(savedInstanceState.getBoolean("shellfish"));

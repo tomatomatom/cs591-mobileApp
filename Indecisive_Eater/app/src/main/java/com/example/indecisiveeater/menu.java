@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class menu extends AppCompatActivity {
@@ -77,15 +78,26 @@ public class menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getBaseContext(),"You've been signed out!", Toast.LENGTH_LONG).show();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user == null) {
+                    Toast.makeText(getBaseContext(), "You've been signed out!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getBaseContext(), "Error. Please Try Again Later.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         bttn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_login = new Intent(menu.this, login.class);
-                startActivity(intent_login);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    Toast.makeText(getBaseContext(), "You are already signed in.", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent_login = new Intent(menu.this, login.class);
+                    startActivity(intent_login);
+                }
             }
         });
     }

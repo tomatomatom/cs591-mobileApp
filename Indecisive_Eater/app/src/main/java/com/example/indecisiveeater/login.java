@@ -68,8 +68,6 @@ public class login extends AppCompatActivity {
                 }
                 else {
                     signIn(email, password);
-                    Intent intent_menu = new Intent(login.this, menu.class);
-                    startActivity(intent_menu);
                 }
             }
         });
@@ -82,6 +80,8 @@ public class login extends AppCompatActivity {
                 if(task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
                     Toast.makeText(getBaseContext(), "You're all signed in!", Toast.LENGTH_LONG).show();
+                    Intent intent_menu = new Intent(login.this, menu.class);
+                    startActivity(intent_menu);
                 }
                 else{
                     Toast.makeText(getBaseContext(), "Email/Password is incorrect", Toast.LENGTH_LONG).show();

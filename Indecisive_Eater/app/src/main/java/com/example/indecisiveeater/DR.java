@@ -5,8 +5,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DR extends AppCompatActivity {
 
@@ -19,7 +29,6 @@ public class DR extends AppCompatActivity {
 
     private Button btn_submit;
     private Button bttn_menu;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +58,72 @@ public class DR extends AppCompatActivity {
             public void onClick(View v) {
                 //when submit is clicked, check which checkboxes are selected and update the database accordingly
 
-                if (cb_vegetarian.isChecked()){
-                    //TODO:update database
-                }
+                boolean is_vegetarian = cb_vegetarian.isChecked();
+                updateDatabase("vegetarian", is_vegetarian);
 
-                if (cb_vegan.isChecked()){
-                    //TODO:update database
-                }
+                boolean is_vegan = cb_vegan.isChecked();
+                updateDatabase("vegan", is_vegan);
 
-                if (cb_gluten.isChecked()){
-                    //TODO:update database
-                }
+                boolean is_gluten = cb_gluten.isChecked();
+                updateDatabase("gluten-free", is_gluten);
 
-
-                //TODO:then, go on to the next activity
-
+                Toast.makeText(getBaseContext(),"Your settings have been updated.",Toast.LENGTH_LONG).show();
             }
         });
 
     }
 
+    private void updateDatabase(String item, boolean value){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference root = database.getReference();
 
+        root.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(item).setValue(value);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference root = database.getReference();
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        //gets the dataSnapShot
+        root.child("users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //vegetarian: reads database & sets value
+                boolean vegetarian = dataSnapshot.child("vegetarian").getValue(boolean.class);
+                if(vegetarian == true){
+                    cb_vegetarian.setChecked(true);
+                }
+                else{
+                    cb_vegetarian.setChecked(false);
+                }
+                //vegan: reads database & sets value
+                boolean vegan = dataSnapshot.child("vegan").getValue(boolean.class);
+                if(vegan == true){
+                    cb_vegan.setChecked(true);
+                }
+                else{
+                    cb_vegan.setChecked(false);
+                }
+                //gluten: reads database & sets value
+                boolean gluten = dataSnapshot.child("gluten-free").getValue(boolean.class);
+                if(gluten == true){
+                    cb_gluten.setChecked(true);
+                }
+                else{
+                    cb_gluten.setChecked(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     //save and restore instance state so you don't lose checked boxes when you rotate your phone, etc.
 

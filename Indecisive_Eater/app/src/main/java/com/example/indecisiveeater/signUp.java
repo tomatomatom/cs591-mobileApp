@@ -70,19 +70,21 @@ public class signUp extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Please enter an email & password", Toast.LENGTH_LONG).show();
                 } else {
                     createAccount(email, password);
-                    writeNewUser(email, password);
                 }
             }
         });
     }
 
-    public void createAccount(String email, String password) {
+    public void createAccount(final String email, final String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    writeNewUser(email, password);
                     FirebaseUser user = mAuth.getCurrentUser();
                     Toast.makeText(getBaseContext(), "Thanks for signing up!", Toast.LENGTH_LONG).show();
+                    Intent intent_menu = new Intent(signUp.this, menu.class);
+                    startActivity(intent_menu);
                 } else {
                     Toast.makeText(getBaseContext(), "Please enter a valid email/password.", Toast.LENGTH_LONG).show();
                 }
@@ -97,7 +99,7 @@ public class signUp extends AppCompatActivity {
         //creates a new user in the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference root = database.getReference();
-        String userID = root.push().getKey();
-        root.child("users").child(userID).setValue(user);
+        String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        root.child("users").child(uID).setValue(user);
     }
 }
