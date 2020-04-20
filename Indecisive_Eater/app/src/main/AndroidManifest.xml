@@ -27,6 +27,8 @@
         <activity android:name=".menu"></activity>
         <activity android:name=".DR"></activity>
         <activity android:name=".Allergies"></activity>
+        <activity android:name=".swipe"></activity>
+
     </application>
 
 </manifest>

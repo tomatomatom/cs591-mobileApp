@@ -83,8 +83,8 @@ public class signUp extends AppCompatActivity {
                     writeNewUser(email, password);
                     FirebaseUser user = mAuth.getCurrentUser();
                     Toast.makeText(getBaseContext(), "Thanks for signing up!", Toast.LENGTH_LONG).show();
-                    Intent intent_menu = new Intent(signUp.this, menu.class);
-                    startActivity(intent_menu);
+                    Intent intent_login = new Intent(signUp.this, login.class);
+                    startActivity(intent_login);
                 } else {
                     Toast.makeText(getBaseContext(), "Please enter a valid email/password.", Toast.LENGTH_LONG).show();
                 }
