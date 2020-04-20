@@ -6,16 +6,16 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/lbl_noresults"
+        android:id="@+id/lbl_none"
         android:layout_width="233dp"
         android:layout_height="56dp"
-        android:text="There are no more restaurants! Please select an option below to continue."
+        android:text="There are no restaurants that match. Try changing your search criteria."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.251" />
 
     <Button
         android:id="@+id/bttn_menu"
@@ -36,34 +36,9 @@
         android:text="Start a New Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.449" />
-
-    <Button
-        android:id="@+id/bttn_liked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go Through Your Yes List"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
-
-    <Button
-        android:id="@+id/bttn_searchAgain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go Through List Again"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.556" />
+        app:layout_constraintVertical_bias="0.415" />
 
     <Button
         android:id="@+id/bttn_dietary"
@@ -72,8 +47,7 @@
         android:text="Dietary Restriction Settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
+        app:layout_constraintVertical_bias="0.566" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,22 +93,52 @@ public class swipe extends AppCompatActivity {
         tv_dietary = findViewById(R.id.tv_dietary);
 
         //sets the restaurant list array to contain the business_ids
-        //TODO: set the number_results based on the Yelp API call
-        num_remain = ;
-        if(num_remain == 0){
-            //new Intent
-        }
-        else {
-            //adds the restaurants to the restaurantList
-            tv_remain.setText(num_remain);
-            for (int index = 0; index < num_remain + 1; index++) {
-                restaurantList.add(businesses[index].id);
+        Intent intent = getIntent();
+        int type = intent.getIntExtra("type",0);
+        //checks to see if it coming from the "liked" button (type = 1) or the new search button (type =0)
+        if(type == 0) {
+            //TODO: set the number_results based on the Yelp API call
+            //num_remain =;
+            if (num_remain == 0) {
+                Intent intent_none = new Intent(swipe.this, NoResults.class);
+                startActivity(intent_none);
+            } else {
+                //adds the restaurants to the restaurantList
+                tv_remain.setText(num_remain);
+                for (int index = 0; index < num_remain + 1; index++) {
+                    restaurantList.add(businesses[index].id);
+                }
             }
-            //displays the first restaurant of the results
-            restaurantIndex = 0;
-            curr_businessID = restaurantList.get(restaurantIndex);
-            displayRestaurant(curr_businessID);
         }
+        //liked button
+        else if(type == 1){
+            restaurantList.clear();
+            noList.clear();
+            num_no = 0;
+            num_yes = 0;
+            tv_yes.setText("--");
+            tv_no.setText("--");
+            num_remain = yesList.size();
+            if(num_remain == 0){
+                Intent intent_none = new Intent(swipe.this, NoResults.class);
+                startActivity(intent_none);
+            }
+            else {
+                tv_remain.setText(num_remain);
+                for (String restaurant_id : yesList) {
+                    restaurantList.add(restaurant_id);
+                }
+                yesList.clear();
+            }
+        }
+        else{
+            Toast.makeText(getBaseContext(), "Error. Please Try Again.", Toast.LENGTH_LONG).show();
+        }
+
+        //displays the first restaurant of the results
+        restaurantIndex = 0;
+        curr_businessID = restaurantList.get(restaurantIndex);
+        displayRestaurant(curr_businessID);
 
         //sets the buttons
         bttn_menu.setOnClickListener(new View.OnClickListener() {
@@ -221,6 +252,7 @@ public class swipe extends AppCompatActivity {
 
     //user selected the restaurant (swipeUp or star)
     public void selectStar(String business_id){
+        //TODO: make new intent
         //go to the new intent
     }
 

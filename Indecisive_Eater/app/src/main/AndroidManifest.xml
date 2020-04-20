@@ -28,6 +28,8 @@
         <activity android:name=".DR"></activity>
         <activity android:name=".Allergies"></activity>
         <activity android:name=".swipe"></activity>
+        <activity android:name=".EndResults"></activity>
+        <activity android:name=".NoResults"></activity>
 
     </application>
 
