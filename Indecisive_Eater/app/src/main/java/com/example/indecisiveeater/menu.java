@@ -57,22 +57,22 @@ public class menu extends AppCompatActivity {
                 startActivity(intent_allergies);
             }
         });
-// TODO: edit Intent accordingly
-//        bttn_startSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent_startSearch = new Intent(menu.this, );
-//                startActivity(intent_startSearch);
-//            }
-//        });
-// TODO: edit Intent accordingly
-//        bttn_current.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent_current = new Intent(menu.this, );
-//                startActivity(intent_current);
-//            }
-//        });
+        bttn_startSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_startSearch = new Intent(menu.this, meal_pref.class);
+                startActivity(intent_startSearch);
+            }
+        });
+
+        bttn_current.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_current = new Intent(menu.this, swipe.class);
+                intent_current.putExtra("type", "back");
+                startActivity(intent_current);
+            }
+        });
 
         bttn_signOut.setOnClickListener(new View.OnClickListener() {
             @Override

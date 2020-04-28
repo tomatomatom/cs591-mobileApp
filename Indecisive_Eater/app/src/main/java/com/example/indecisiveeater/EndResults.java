@@ -45,30 +45,30 @@ public class EndResults extends AppCompatActivity {
                 startActivity(intent_dietary);
             }
         });
+
         bttn_liked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent_liked = new Intent(EndResults.this, swipe.class);
-                int type = 1;
-                intent_liked.putExtra("type", 1);
+                intent_liked.putExtra("type", "liked");
                 startActivity(intent_liked);
             }
         });
 
-        //TODO: edit intents accordingly
         bttn_newSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent_new = new Intent(EndResults.this, );
-                //startActivity(intent_new);
+                Intent intent_new = new Intent(EndResults.this, meal_pref.class);
+                startActivity(intent_new);
             }
         });
-        //TODO: edit intents accordingly
+
         bttn_searchAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent_again = new Intent(EndResults.this, );
-                //startActivity(intent_again);
+                Intent intent_again = new Intent(EndResults.this, swipe.class);
+                intent_again.putExtra("type", "searchAgain");
+                startActivity(intent_again);
             }
         });
     }

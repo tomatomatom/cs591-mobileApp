@@ -30,10 +30,14 @@ public class DR extends AppCompatActivity {
     private Button btn_submit;
     private Button bttn_menu;
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dr);
+
+        mAuth = FirebaseAuth.getInstance();
 
         cb_vegetarian = findViewById(R.id.cb_vegetarian);
         cb_vegan = findViewById(R.id.cb_vegan);
@@ -44,6 +48,8 @@ public class DR extends AppCompatActivity {
 
         btn_submit = findViewById(R.id.btn_submit);
         bttn_menu = findViewById(R.id.bttn_menu);
+
+        loadDatabase();
 
         bttn_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,9 +87,7 @@ public class DR extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void loadDatabase(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference root = database.getReference();
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -92,30 +96,33 @@ public class DR extends AppCompatActivity {
         root.child("users").child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //vegetarian: reads database & sets value
-                boolean vegetarian = dataSnapshot.child("vegetarian").getValue(boolean.class);
-                if(vegetarian == true){
-                    cb_vegetarian.setChecked(true);
+                if(dataSnapshot.child("vegetarian").exists() == true) {
+                    //vegetarian: reads database & sets value
+                    boolean vegetarian = dataSnapshot.child("vegetarian").getValue(boolean.class);
+                    if (vegetarian == true) {
+                        cb_vegetarian.setChecked(true);
+                    } else {
+                        cb_vegetarian.setChecked(false);
+                    }
                 }
-                else{
-                    cb_vegetarian.setChecked(false);
+                if(dataSnapshot.child("vegan").exists() == true) {
+                    //vegan: reads database & sets value
+                    boolean vegan = dataSnapshot.child("vegan").getValue(boolean.class);
+                    if (vegan == true) {
+                        cb_vegan.setChecked(true);
+                    } else {
+                        cb_vegan.setChecked(false);
+                    }
                 }
-                //vegan: reads database & sets value
-                boolean vegan = dataSnapshot.child("vegan").getValue(boolean.class);
-                if(vegan == true){
-                    cb_vegan.setChecked(true);
-                }
-                else{
-                    cb_vegan.setChecked(false);
-                }
-                //gluten: reads database & sets value
-                boolean gluten = dataSnapshot.child("gluten-free").getValue(boolean.class);
-                if(gluten == true){
-                    cb_gluten.setChecked(true);
-                }
-                else{
-                    cb_gluten.setChecked(false);
-                }
+                if(dataSnapshot.child("gluten-free").exists() == true){
+                    //gluten: reads database & sets value
+                        boolean gluten = dataSnapshot.child("gluten-free").getValue(boolean.class);
+                        if (gluten == true) {
+                            cb_gluten.setChecked(true);
+                        } else {
+                            cb_gluten.setChecked(false);
+                        }
+                    }
             }
 
             @Override
@@ -123,6 +130,12 @@ public class DR extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     //save and restore instance state so you don't lose checked boxes when you rotate your phone, etc.

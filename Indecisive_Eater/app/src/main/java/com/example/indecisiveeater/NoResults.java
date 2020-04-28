@@ -40,12 +40,13 @@ public class NoResults extends AppCompatActivity {
                 startActivity(intent_dietary);
             }
         });
-        //TODO: edit intent accordingly
+
+
         bttn_newSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent_new = new Intent(NoResults.this, )
-                //startActivity(intent_new);
+                Intent intent_new = new Intent(NoResults.this, meal_pref.class);
+                startActivity(intent_new);
             }
         });
     }

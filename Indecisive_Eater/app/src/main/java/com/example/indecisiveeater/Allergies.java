@@ -55,6 +55,8 @@ public class Allergies extends AppCompatActivity {
         btn_submit = findViewById(R.id.btn_submit);
         bttn_menu = findViewById(R.id.bttn_menu);
 
+        loadDatabase();
+
         bttn_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,9 +108,7 @@ public class Allergies extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void loadDatabase(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference root = database.getReference();
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -118,69 +118,77 @@ public class Allergies extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //peanut: reads database & sets value
+                if (dataSnapshot.child("peanut_allergy").exists() == true) {
                     boolean peanut = dataSnapshot.child("peanut_allergy").getValue(boolean.class);
-                    if(peanut == true){
+                    if (peanut == true) {
                         cb_peanut.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_peanut.setChecked(false);
                     }
+                }
                 //treenut: reads database & sets value
+                if(dataSnapshot.child("treenut_allergy").exists() == true) {
                     boolean treenut = dataSnapshot.child("treenut_allergy").getValue(boolean.class);
-                    if(treenut == true){
+                    if (treenut == true) {
                         cb_treenut.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_treenut.setChecked(false);
                     }
+                }
                 //lactose: reads database & sets value
+                if(dataSnapshot.child("lactose_allergy").exists() == true) {
                     boolean lactose = dataSnapshot.child("lactose_allergy").getValue(boolean.class);
-                    if(lactose == true){
+                    if (lactose == true) {
                         cb_lactose.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_lactose.setChecked(false);
                     }
+                }
                 //eggs: reads database & sets value
+                if(dataSnapshot.child("egg_allergy").exists() == true) {
                     boolean egg = dataSnapshot.child("egg_allergy").getValue(boolean.class);
-                    if(egg == true){
+                    if (egg == true) {
                         cb_egg.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_egg.setChecked(false);
+                    }
                 }
                 //fish: reads database & sets value
+                if(dataSnapshot.child("fish_allergy").exists() == true) {
                     boolean fish = dataSnapshot.child("fish_allergy").getValue(boolean.class);
-                    if(fish == true){
+                    if (fish == true) {
                         cb_fish.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_fish.setChecked(false);
                     }
+                }
                 //shellfish: reads database & sets value
+                if(dataSnapshot.child("shellfish_allergy").exists() == true) {
                     boolean shellfish = dataSnapshot.child("shellfish_allergy").getValue(boolean.class);
-                    if(shellfish == true){
+                    if (shellfish == true) {
                         cb_shellfish.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_shellfish.setChecked(false);
                     }
+                }
                 //wheat: reads database & sets value
+                if(dataSnapshot.child("wheat_allergy").exists() == true) {
                     boolean wheat = dataSnapshot.child("wheat_allergy").getValue(boolean.class);
-                    if(wheat == true){
+                    if (wheat == true) {
                         cb_wheat.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_wheat.setChecked(false);
                     }
+                }
                 //soy: reads database & sets value
+                if(dataSnapshot.child("soy_allergy").exists() == true) {
                     boolean soy = dataSnapshot.child("soy_allergy").getValue(boolean.class);
-                    if(soy == true){
+                    if (soy == true) {
                         cb_soy.setChecked(true);
-                    }
-                    else{
+                    } else {
                         cb_soy.setChecked(false);
                     }
+                }
             }
 
             @Override
@@ -188,6 +196,11 @@ public class Allergies extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     //save and restore instance state so you don't lose checked boxes when you rotate your phone, etc.
