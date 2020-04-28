@@ -95,12 +95,15 @@ public class singleRestaurant extends AppCompatActivity {
             }
         });
 
-//        bttn_reserve.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                reserveRestaurant();
-//            }
-//        });
+        bttn_reserve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String website = select_restaurant.getWebsite();
+                Uri uri = Uri.parse(website);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
         //gets directions
         bttn_directions.setOnClickListener(new View.OnClickListener() {
